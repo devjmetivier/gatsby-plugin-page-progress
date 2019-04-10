@@ -1,6 +1,6 @@
 {
 	"name": "gatsby-plugin-page-progress",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Progress bar for the top of pages as user scrolls",
 	"keywords": [
 		"gatsby",
@@ -12,6 +12,9 @@
 	"main": "index.js",
 	"repository": "https://github.com/dmetivier/gatsby-plugin-page-progress",
 	"scripts": {
+		"build": "babel src --out-dir .",
+		"clean": "rm -rf node_modules",
+		"prepare": "npm run build",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix"
 	},
@@ -19,6 +22,9 @@
 	"license": "MIT",
 	"dependencies": {},
 	"devDependencies": {
+		"@babel/cli": "7.2.3",
+		"@babel/core": "7.3.3",
+		"babel-preset-gatsby-package": "0.1.3",
 		"babel-eslint": "^9.0.0",
 		"eslint": "^5.16.0",
 		"eslint-config-airbnb": "^17.1.0",
