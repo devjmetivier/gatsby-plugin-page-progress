@@ -10,7 +10,7 @@
 		"indicator"
 	],
 	"main": "index.js",
-	"repository": "git@github.com:dmetivier/gatsby-plugin-page-progress.git",
+	"repository": "https://github.com/dmetivier/gatsby-plugin-page-progress",
 	"scripts": {
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix"
