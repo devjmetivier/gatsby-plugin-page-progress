@@ -1,5 +1,5 @@
 const defaultOptions = {
-  matchStartOfPath: [''],
+  matchStartOfPath: [],
   // need to make this feature work
   /* NOTES:
    * Need to make sure that query params and fragments
@@ -8,7 +8,7 @@ const defaultOptions = {
   // matchEndOfPath: [''],
   height: 3,
   prependToBody: false,
-  color: '#663399',
+  color: `#663399`,
 };
 
 export const onRouteUpdate = (
@@ -29,7 +29,7 @@ export const onRouteUpdate = (
 
     // set defaults and grab progress indicator from the DOM
     let scrolling = false;
-    const indicator = document.getElementById('gatsby-plugin-page-progress');
+    const indicator = document.getElementById(`gatsby-plugin-page-progress`);
 
     // determine width of progress indicator
     const getIndicatorPercentageWidth = (currentPos, totalScroll) => {
@@ -50,7 +50,7 @@ export const onRouteUpdate = (
     };
 
     // add throttled listener to update on scroll
-    window.addEventListener('scroll', () => {
+    window.addEventListener(`scroll`, () => {
       const currentPos = window.scrollY;
       const { innerHeight } = window;
       const scrollHeight = getScrollHeight();
@@ -64,7 +64,7 @@ export const onRouteUpdate = (
           );
 
           indicator.setAttribute(
-            'style',
+            `style`,
             // eslint-disable-next-line
             `width: ${indicatorWidth}%; position: fixed; height: ${options.height}px; background-color: ${options.color}; top: 0; left: 0; transition: width 0.25s`
           );
@@ -98,7 +98,7 @@ export const onRouteUpdate = (
 
     // check to see if the scroll indicator already exists - if it does, remove it
     const indicatorCheck = document.getElementById(
-      'gatsby-plugin-page-progress'
+      `gatsby-plugin-page-progress`
     );
     if (indicatorCheck) indicatorCheck.remove();
     if (matches) {
