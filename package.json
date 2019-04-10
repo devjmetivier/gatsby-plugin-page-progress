@@ -4,6 +4,7 @@
 	"description": "Progress bar for the top of pages as user scrolls",
 	"keywords": [
 		"gatsby",
+		"gatsby-plugin",
 		"plugin",
 		"progress",
 		"scroll",
