@@ -1,6 +1,6 @@
 {
 	"name": "gatsby-plugin-page-progress",
-	"version": "0.0.3",
+	"version": "0.0.5",
 	"description": "Progress bar for the top of pages as user scrolls",
 	"keywords": [
 		"gatsby",
