@@ -1,0 +1,35 @@
+{
+	"name": "gatsby-plugin-page-progress",
+	"version": "0.0.1",
+	"description": "Progress bar for the top of pages as user scrolls",
+	"keywords": [
+		"gatsby",
+		"plugin",
+		"progress",
+		"scroll",
+		"indicator"
+	],
+	"main": "index.js",
+	"repository": "git@github.com:dmetivier/gatsby-plugin-page-progress.git",
+	"scripts": {
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix"
+	},
+	"author": "Devin Metivier <devinmetivier@gmail.com>",
+	"license": "MIT",
+	"dependencies": {},
+	"devDependencies": {
+		"babel-eslint": "^9.0.0",
+		"eslint": "^5.16.0",
+		"eslint-config-airbnb": "^17.1.0",
+		"eslint-config-devjmetivier": "0.0.8",
+		"eslint-config-prettier": "^4.1.0",
+		"eslint-plugin-html": "^5.0.3",
+		"eslint-plugin-import": "^2.16.0",
+		"eslint-plugin-jsx-a11y": "^6.2.1",
+		"eslint-plugin-prettier": "^3.0.1",
+		"eslint-plugin-react": "^7.12.4",
+		"eslint-plugin-react-hooks": "^1.6.0",
+		"prettier": "^1.16.4"
+	}
+}
