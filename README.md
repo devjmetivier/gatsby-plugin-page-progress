@@ -15,22 +15,31 @@ Add a page progress indicator to your Gatsby project 😎
 Inside `gatsby-config.js`
 
 ```js
-{
-  resolve: 'gatsby-plugin-page-progress',
-  options: {
-    matchStartOfPath: ['blog'],
-    height: 3,
-    prepend: false,
-    color: '#663399'
-  }
-}
-``` 
+plugins: [
+    {
+      resolve: 'gatsby-plugin-page-progress',
+      options: {
+        matchStartOfPath: ['blog', 'post', 'about'],
+        height: 3,
+        prepend: false,
+        color: '#663399'
+      }
+    }
+]
+```
+
+If you'd like the progression bar to appear on all pages of your project,
+you can simply add the name of the plugin to your plugins array in `gatsby-config.js`
+
+```js
+plugins: ['gatsby-plugin-page-progress']
+```
 
 ## Available Options
 
 | option           | accepts         | default | required | description                                                                                                                                                                                  |
 |------------------|-----------------|---------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| matchStartOfPath | `Array[String]` | []      | ❌        | This option overrides the progress bar to be on every page by default. It matches the beginning route of a given path. For example: `www.blog.com/post/birds-arent-real` would match `post`. |
+| matchStartOfPath | `Array[String]` | []      | ❌        | Supports multiple paths. This option overrides the progress bar to be on every page by default. It matches the beginning route of a given path. For example: `www.blog.com/post/birds-arent-real` would match `post`. |
 | prependToBody    | `Boolean`       | false   | ❌        | If `false`, the bar is appended to the end of the body. If `true`, the bar is prepended to the beginning of the body.                                                                        |
 | height           | `Number`        | 3       | ❌        | Sets the height of the progress bar.                                                                                                                                                         |
 | color            | `String`        | #663399 | ❌        | Sets the color of the progress bar.                                                                                                                                                          |
