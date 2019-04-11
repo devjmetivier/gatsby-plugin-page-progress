@@ -1,17 +1,24 @@
 {
 	"name": "gatsby-plugin-page-progress",
-	"version": "0.0.6",
 	"description": "Progress bar for the top of pages as user scrolls",
+	"version": "0.0.6",
+	"author": "Devin Metivier <devinmetivier@gmail.com>",
+	"license": "MIT",
+	"repository": "https://github.com/dmetivier/gatsby-plugin-page-progress",
+	"homepage": "https://github.com/dmetivier/gatsby-plugin-page-progress",
+	"bugs": {
+		"url": "https://github.com/dmetivier/gatsby-plugin-page-progress/issues"
+	},
 	"keywords": [
 		"gatsby",
 		"gatsby-plugin",
 		"plugin",
 		"progress",
 		"scroll",
-		"indicator"
+		"indicator",
+		"bar"
 	],
 	"main": "index.js",
-	"repository": "https://github.com/dmetivier/gatsby-plugin-page-progress",
 	"scripts": {
 		"build": "babel src --out-dir .",
 		"clean": "rm -rf node_modules",
@@ -20,8 +27,6 @@
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix"
 	},
-	"author": "Devin Metivier <devinmetivier@gmail.com>",
-	"license": "MIT",
 	"dependencies": {},
 	"devDependencies": {
 		"@babel/cli": "7.2.3",

@@ -5,6 +5,8 @@
 
 Add a page progress indicator to your Gatsby project 😎
 
+![Page Progress Example](https://i.imgur.com/8rVqsYF.gifv)
+
 ## Install
 `npm i gatsby-plugin-page-progress`
 

@@ -10,7 +10,7 @@ const defaultOptions = {
   prependToBody: false,
   color: `#663399`,
 };
-
+// browser API usage: https://www.gatsbyjs.org/docs/browser-apis/#onRouteUpdate
 export const onRouteUpdate = (
   { location: { pathname } },
   pluginOptions = {}
