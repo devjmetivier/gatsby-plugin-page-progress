@@ -4,13 +4,17 @@
 ![npm bundle size](https://img.shields.io/bundlephobia/min/gatsby-plugin-page-progress.svg)
 
 Add a page progress indicator to your Gatsby project 😎
+The progress bar moves as you scroll down the page.
 
 ![Page Progress Example](https://i.imgur.com/N1jdBST.gif)
+
+> Useful for blog sites and other reading material to show
+users know how far they've read into an article or page.
 
 ## Install
 `npm i gatsby-plugin-page-progress`
 
-## API
+## Options
 
 Inside `gatsby-config.js`
 
