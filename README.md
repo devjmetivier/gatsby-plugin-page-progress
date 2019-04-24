@@ -2,6 +2,7 @@
 
 ![npm](https://img.shields.io/npm/v/gatsby-plugin-page-progress.svg?color=green)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/gatsby-plugin-page-progress.svg)
+![npm](https://img.shields.io/npm/dt/gatsby-plugin-page-progress.svg)
 
 Add a page progress indicator to your Gatsby project 😎
 The progress bar moves as you scroll down the page.
