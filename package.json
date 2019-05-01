@@ -30,7 +30,7 @@
 	"dependencies": {},
 	"devDependencies": {
 		"@babel/cli": "7.4.4",
-		"@babel/core": "7.4.3",
+		"@babel/core": "7.4.4",
 		"babel-eslint": "^9.0.0",
 		"babel-preset-gatsby-package": "0.1.4",
 		"eslint": "^5.14.1",
