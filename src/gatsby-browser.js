@@ -65,8 +65,14 @@ export const onRouteUpdate = (
 
           indicator.setAttribute(
             `style`,
-            // eslint-disable-next-line
-            `width: ${indicatorWidth}%; position: fixed; height: ${options.height}px; background-color: ${options.color}; top: 0; left: 0; transition: width 0.25s`
+            // styles
+            `width: ${indicatorWidth}%;
+             position: fixed;
+             height: ${options.height}px;
+             background-color: ${options.color};
+             top: 0; 
+             left: 0; 
+             transition: width 0.25s`
           );
 
           scrolling = false;
@@ -101,8 +107,6 @@ export const onRouteUpdate = (
       `gatsby-plugin-page-progress`
     );
     if (indicatorCheck) indicatorCheck.remove();
-    if (matches) {
-      pageProgress();
-    }
+    if (matches) pageProgress();
   }
 };
