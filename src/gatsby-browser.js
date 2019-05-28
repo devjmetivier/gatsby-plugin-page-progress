@@ -1,11 +1,6 @@
 const defaultOptions = {
   matchStartOfPath: [],
-  // need to make this feature work
-  /* NOTES:
-   * Need to make sure that query params and fragments
-   * don't get in the way of matches at end of path
-   * */
-  // matchEndOfPath: [''],
+  matchEndOfPath: [],
   height: 3,
   prependToBody: false,
   color: `#663399`,
@@ -65,14 +60,8 @@ export const onRouteUpdate = (
 
           indicator.setAttribute(
             `style`,
-            // styles
-            `width: ${indicatorWidth}%;
-             position: fixed;
-             height: ${options.height}px;
-             background-color: ${options.color};
-             top: 0; 
-             left: 0; 
-             transition: width 0.25s`
+            // eslint-disable-next-line
+            `width: ${indicatorWidth}%; position: fixed; height: ${options.height}px; background-color: ${options.color}; top: 0; left: 0; transition: width 0.25s;`
           );
 
           scrolling = false;
@@ -83,30 +72,55 @@ export const onRouteUpdate = (
   }
 
   if (
-    !options.matchStartOfPath ||
-    options.matchStartOfPath.length === 0
-    // TODO: need to add support for matches for end of path
-    // ||
-    // !options.matchEndOfPath ||
-    // options.matchEndOfPath.length === 0
+    options.matchStartOfPath.length === 0 &&
+    options.matchEndOfPath.length === 0
   ) {
     pageProgress();
   } else {
-    // grab array of prefixes to apply progress to and make a new string for the RegExp
-    const prefixesToMatch = options.matchStartOfPath.reduce(
-      (accumulator, currentValue, i) =>
-        i === 0 ? currentValue : `${accumulator}|${currentValue}`
-    );
+    // set defaults
+    let prefixesToMatch = ``;
+    let suffixesToMatch = ``;
+
+    // check if matchStartOfPath entries exist
+    if (options.matchStartOfPath.length !== 0) {
+      prefixesToMatch = options.matchStartOfPath.reduce(
+        (accumulator, currentValue, i) =>
+          i === 0 ? currentValue : `${accumulator}|${currentValue}`
+      );
+    }
+
+    // check if matchEndOfPath entries exist
+    if (options.matchEndOfPath.length !== 0) {
+      suffixesToMatch = options.matchEndOfPath.reduce(
+        (accumulator, currentValue, i) =>
+          i === 0 ? currentValue : `${accumulator}|${currentValue}`
+      );
+    }
+
+    // should match to something like: (/post|/category|/blog|/etc)
+    // denoted by the "/" at the beginning of the path
+    const reStart = RegExp(`^/(${prefixesToMatch})`, `gm`);
+    const matchesStart =
+      prefixesToMatch !== `` ? reStart.test(pathname) : false;
 
     // should match to something like: (post|category|blog|etc)
-    const re = RegExp(`^/(${prefixesToMatch})`, `gm`);
-    const matches = re.test(pathname);
+    // denoted by the ending string of the path with no trailing "/"
+    // ex: location.pathname = 'path/to/post/this-is-my-post'
+    const reEnd = RegExp(`(${suffixesToMatch})$`, `gm`);
+    const matchesEnd = suffixesToMatch !== `` ? reEnd.test(pathname) : false;
+
+    // this is the same as the check directly above, only accounting for a trailing slash
+    // ex: location.pathname = '/path/to/post/this-is-my-post/'
+    const reEndTrailingSlash = RegExp(`(${suffixesToMatch})\/$`, `gm`);
+    const matchesEndTrailingSlash =
+      suffixesToMatch !== `` ? reEndTrailingSlash.test(pathname) : false;
 
     // check to see if the scroll indicator already exists - if it does, remove it
     const indicatorCheck = document.getElementById(
       `gatsby-plugin-page-progress`
     );
     if (indicatorCheck) indicatorCheck.remove();
-    if (matches) pageProgress();
+
+    if (matchesStart || matchesEnd || matchesEndTrailingSlash) pageProgress();
   }
 };
