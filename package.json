@@ -1,7 +1,7 @@
 {
   "name": "gatsby-plugin-page-progress",
   "description": "Progress bar for the top of pages as user scrolls",
-  "version": "1.0.1",
+  "version": "2.0.0-beta.1",
   "author": "Devin Metivier <devinmetivier@gmail.com>",
   "license": "MIT",
   "repository": "https://github.com/dmetivier/gatsby-plugin-page-progress",
