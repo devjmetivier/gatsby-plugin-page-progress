@@ -1,7 +1,7 @@
 {
   "name": "gatsby-plugin-page-progress",
   "description": "Progress bar for the top of pages as user scrolls",
-  "version": "2.0.1-beta.1",
+  "version": "2.0.2-beta.1",
   "author": "Devin Metivier <devinmetivier@gmail.com>",
   "license": "MIT",
   "repository": "https://github.com/dmetivier/gatsby-plugin-page-progress",
@@ -20,7 +20,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "build": "babel src --out-dir .",
+    "build": "babel src --out-dir . && uglifyjs gatsby-browser.js -cm -o gatsby-browser.js",
     "clean": "rm -rf node_modules",
     "prepare": "npm run build",
     "watch": "babel -w src --out-dir .",
