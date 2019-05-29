@@ -1,6 +1,6 @@
 const defaultOptions = {
-  matchStartOfPath: [],
-  matchEndOfPath: [],
+  includePaths: [],
+  excludePaths: [],
   height: 3,
   prependToBody: false,
   color: `#663399`,
@@ -13,12 +13,14 @@ export const onRouteUpdate = (
   // merge default options with user defined options in `gatsby-config.js`
   const options = { ...defaultOptions, ...pluginOptions };
 
+  const { includePaths, excludePaths, height, prependToBody, color } = options;
+
   function pageProgress() {
     // create progress indicator container and append/prepend to document body
     const node = document.createElement(`div`);
     node.id = `gatsby-plugin-page-progress`;
     // eslint-disable-next-line
-    options.prependToBody
+    prependToBody
       ? document.body.prepend(node)
       : document.body.append(node);
 
@@ -61,7 +63,7 @@ export const onRouteUpdate = (
           indicator.setAttribute(
             `style`,
             // eslint-disable-next-line
-            `width: ${indicatorWidth}%; position: fixed; height: ${options.height}px; background-color: ${options.color}; top: 0; left: 0; transition: width 0.25s;`
+            `width: ${indicatorWidth}%; position: fixed; height: ${height}px; background-color: ${color}; top: 0; left: 0; transition: width 0.25s;`
           );
 
           scrolling = false;
@@ -71,56 +73,62 @@ export const onRouteUpdate = (
     });
   }
 
-  if (
-    options.matchStartOfPath.length === 0 &&
-    options.matchEndOfPath.length === 0
-  ) {
-    pageProgress();
-  } else {
-    // set defaults
-    let prefixesToMatch = ``;
-    let suffixesToMatch = ``;
+  function checkExcludePaths() {
+    let continueAfterExclude = true;
 
-    // check if matchStartOfPath entries exist
-    if (options.matchStartOfPath.length !== 0) {
-      prefixesToMatch = options.matchStartOfPath.reduce(
-        (accumulator, currentValue, i) =>
-          i === 0 ? currentValue : `${accumulator}|${currentValue}`
-      );
-    }
+    excludePaths.forEach(x => {
+      if (continueAfterExclude === false) return;
+      const isRegex = typeof x === `object`;
 
-    // check if matchEndOfPath entries exist
-    if (options.matchEndOfPath.length !== 0) {
-      suffixesToMatch = options.matchEndOfPath.reduce(
-        (accumulator, currentValue, i) =>
-          i === 0 ? currentValue : `${accumulator}|${currentValue}`
-      );
-    }
+      if (isRegex && x.test(pathname)) {
+        continueAfterExclude = false;
+      } else if (x === pathname) {
+        continueAfterExclude = false;
+      }
+    });
 
-    // should match to something like: (/post|/category|/blog|/etc)
-    // denoted by the "/" at the beginning of the path
-    const reStart = RegExp(`^/(${prefixesToMatch})`, `gm`);
-    const matchesStart =
-      prefixesToMatch !== `` ? reStart.test(pathname) : false;
+    return continueAfterExclude;
+  }
 
-    // should match to something like: (post|category|blog|etc)
-    // denoted by the ending string of the path with no trailing "/"
-    // ex: location.pathname = 'path/to/post/this-is-my-post'
-    const reEnd = RegExp(`(${suffixesToMatch})$`, `gm`);
-    const matchesEnd = suffixesToMatch !== `` ? reEnd.test(pathname) : false;
+  function checkIncludePaths() {
+    let match = false;
 
-    // this is the same as the check directly above, only accounting for a trailing slash
-    // ex: location.pathname = '/path/to/post/this-is-my-post/'
-    const reEndTrailingSlash = RegExp(`(${suffixesToMatch})\/$`, `gm`);
-    const matchesEndTrailingSlash =
-      suffixesToMatch !== `` ? reEndTrailingSlash.test(pathname) : false;
+    includePaths.forEach(x => {
+      if (match) return;
+      const isRegex = typeof x === `object`;
 
+      if (isRegex && x.test(pathname)) match = true;
+      if (x === pathname) match = true;
+    });
+
+    return match;
+  }
+
+  function removeProgressIndicator() {
     // check to see if the scroll indicator already exists - if it does, remove it
     const indicatorCheck = document.getElementById(
       `gatsby-plugin-page-progress`
     );
     if (indicatorCheck) indicatorCheck.remove();
+  }
 
-    if (matchesStart || matchesEnd || matchesEndTrailingSlash) pageProgress();
+  if (!excludePaths.length && !includePaths.length) {
+    removeProgressIndicator();
+    pageProgress();
+  } else if (excludePaths.length && !includePaths.length) {
+    const continueAfterExclude = checkExcludePaths();
+
+    removeProgressIndicator();
+
+    if (continueAfterExclude) pageProgress();
+  } else {
+    const continueAfterExclude = checkExcludePaths();
+
+    removeProgressIndicator();
+
+    if (continueAfterExclude) {
+      const match = checkIncludePaths();
+      match && pageProgress();
+    }
   }
 };
