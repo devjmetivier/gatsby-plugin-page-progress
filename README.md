@@ -1,6 +1,7 @@
 # gatsby-plugin-page-progress
 
 ![npm](https://img.shields.io/npm/v/gatsby-plugin-page-progress.svg?color=green)
+![npm (tag)](https://img.shields.io/npm/v/gatsby-plugin-page-progress/beta.svg?color=blue)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/gatsby-plugin-page-progress.svg)
 ![npm](https://img.shields.io/npm/dt/gatsby-plugin-page-progress.svg)
 
