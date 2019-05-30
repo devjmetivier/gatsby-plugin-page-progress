@@ -5,6 +5,7 @@ const defaultOptions = {
   prependToBody: false,
   color: `#663399`,
 };
+
 // browser API usage: https://www.gatsbyjs.org/docs/browser-apis/#onRouteUpdate
 export const onRouteUpdate = (
   { location: { pathname } },
@@ -73,59 +74,52 @@ export const onRouteUpdate = (
     });
   }
 
-  function checkExcludePaths() {
-    let continueAfterExclude = true;
+  function checkPaths(val, paths) {
+    if (paths.length === 0) return val; // return if no paths
+    let returnVal = val;
 
-    excludePaths.forEach(x => {
-      if (continueAfterExclude === false) return;
+    // loop over each path
+    paths.forEach(x => {
+      // if returnVal has already changed => return
+      if (returnVal === !val) return;
+      // regex is supplied in an object: { regex: '/beep/beep/lettuce' }
       const isRegex = typeof x === `object`;
 
+      // if regex is present test it against the pathname - if test passes, change returnVal
       if (isRegex && new RegExp(x.regex, `gm`).test(pathname))
-        continueAfterExclude = false;
-      if (x === pathname) continueAfterExclude = false;
+        returnVal = !returnVal;
+      // otherwise if the current path is strictly equal to the pathname, change returnVal
+      if (x === pathname) returnVal = !returnVal;
     });
 
-    return continueAfterExclude;
+    return returnVal;
   }
 
-  function checkIncludePaths() {
-    let match = false;
-
-    includePaths.forEach(x => {
-      if (match) return;
-      const isRegex = typeof x === `object`;
-
-      if (isRegex && new RegExp(x.regex, `gm`).test(pathname)) match = true;
-      if (x === pathname) match = true;
-    });
-
-    return match;
-  }
-
+  // check to see if the scroll indicator already exists - if it does, remove it
   function removeProgressIndicator() {
-    // check to see if the scroll indicator already exists - if it does, remove it
     const indicatorCheck = document.getElementById(
       `gatsby-plugin-page-progress`
     );
     if (indicatorCheck) indicatorCheck.remove();
   }
 
+  // if there's no excluded paths && no included paths
   if (!excludePaths.length && !includePaths.length) {
     removeProgressIndicator();
     pageProgress();
+    // if there's excluded paths && no included paths
   } else if (excludePaths.length && !includePaths.length) {
-    const continueAfterExclude = checkExcludePaths();
-
+    const continueAfterExclude = checkPaths(true, excludePaths);
     removeProgressIndicator();
 
     if (continueAfterExclude) pageProgress();
+    // if there's either excluded paths && included paths || no excluded paths && included paths
   } else {
-    const continueAfterExclude = checkExcludePaths();
-
+    const continueAfterExclude = checkPaths(true, excludePaths);
     removeProgressIndicator();
 
     if (continueAfterExclude) {
-      const match = checkIncludePaths();
+      const match = checkPaths(false, includePaths);
       match && pageProgress();
     }
   }
