@@ -78,9 +78,9 @@ export const onRouteUpdate = (
 
     excludePaths.forEach(x => {
       if (continueAfterExclude === false) return;
-      const isRegex = typeof x === 'object';
+      const isRegex = typeof x === `object`;
 
-      if (isRegex && new RegExp(x.regex, 'gm').test(pathname))
+      if (isRegex && new RegExp(x.regex, `gm`).test(pathname))
         continueAfterExclude = false;
       if (x === pathname) continueAfterExclude = false;
     });
@@ -93,9 +93,9 @@ export const onRouteUpdate = (
 
     includePaths.forEach(x => {
       if (match) return;
-      const isRegex = typeof x === 'object';
+      const isRegex = typeof x === `object`;
 
-      if (isRegex && new RegExp(x.regex, 'gm').test(pathname)) match = true;
+      if (isRegex && new RegExp(x.regex, `gm`).test(pathname)) match = true;
       if (x === pathname) match = true;
     });
 
