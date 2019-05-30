@@ -23,11 +23,11 @@ plugins: [
     {
       resolve: 'gatsby-plugin-page-progress',
       options: {
-        matchStartOfPath: ['blog', 'post', 'about'],
-        matchEndOfPath: ['marketing-page'],
+        includePaths: ['/', { regex: '^/blog' }],
+        excludePaths: ['/blog/beep-beep-lettuce'],
         height: 3,
-        prepend: false,
-        color: '#663399'
+        prependToBody: false,
+        color: `#663399`,
       }
     }
 ]
@@ -42,10 +42,86 @@ plugins: ['gatsby-plugin-page-progress']
 
 ## Available Options
 
-| option           | accepts         | default | required | description                                                                                                                                                                                                                                     |
-|------------------|-----------------|---------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| matchStartOfPath | `Array[String]` | []      | ❌        | Supports multiple paths. This option overrides the progress bar to be on every page. It matches the beginning of a given path. Example: `www.blog.com/post/birds-arent-real` would match `post`.                                                |
-| matchEndOfPath   | `Array[String]` | []      | ❌        | Supports multiple paths. This option overrides the progress bar to be on every page. It matches the end of a given path. Example: `www.blog.com/post/birds-arent-real` would match `birds-arent-real`. This also accounts for trailing slashes. |
-| prependToBody    | `Boolean`       | false   | ❌        | If `false`, the bar is appended to the end of the body. If `true`, the bar is prepended to the beginning of the body.                                                                                                                           |
-| height           | `Number`        | 3       | ❌        | Sets the height of the progress bar.                                                                                                                                                                                                            |
-| color            | `String`        | #663399 | ❌        | Sets the color of the progress bar.                                                                                                                                                                                                             |
+| option        | accepts                   | default | required | description                                                                                                                                                                                                                                         |
+|---------------|---------------------------|---------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| includePaths  | `Array[String || Object]` | []      | ❌        | Supports multiple paths. This option enables the plugin to include an array of paths. You can use regex to include multiple paths to include. __See examples below__                                                                                |
+| excludePaths  | `Array[String || Object]`  | []      | ❌        | Supports multiple paths. This option enables the plugin to exclude an array of paths. You can use regex to include multiple paths to exclude. Defining paths to exclude will take precedence over `includePath` definitions. __See examples below__ |
+| prependToBody | `Boolean`                 | false   | ❌        | If `false`, the bar is appended to the end of the body. If `true`, the bar is prepended to the beginning of the body.                                                                                                                               |
+| height        | `Number`                  | 3       | ❌        | Sets the height of the progress bar.                                                                                                                                                                                                                |
+| color         | `String`                  | #663399 | ❌        | Sets the color of the progress bar.                                                                                                                                                                                                                 |
+
+## Examples
+
+#### Only include the root path:
+
+```js
+plugins: [
+    {
+      resolve: 'gatsby-plugin-page-progress',
+      options: {
+        includePaths: ['/'],
+        excludePaths: [],
+      }
+    }
+]
+```
+
+#### Include the root path, plus every path under the `/blog` route:
+
+```js
+plugins: [
+    {
+      resolve: 'gatsby-plugin-page-progress',
+      options: {
+        includePaths: ['/', { regex: '^/blog' }],
+        excludePaths: [],
+      }
+    }
+]
+```
+
+> This plugin calls the constructor function for [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Creating_a_regular_expression). That's why we define any regex that we want to use inside an object. For more information on how to write regular expressions using the RegExp constructor use [MDN for reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp#Description).
+
+#### Exclude only the root path:
+
+```js
+plugins: [
+    {
+      resolve: 'gatsby-plugin-page-progress',
+      options: {
+        includePaths: [],
+        excludePaths: ['/'],
+      }
+    }
+]
+```
+
+#### Include the root path, plus every path under the `/blog` route, but exclude a specific path under `/blog`:
+
+```js
+plugins: [
+    {
+      resolve: 'gatsby-plugin-page-progress',
+      options: {
+        includePaths: ['/', { regex: '^/blog' }],
+        excludePaths: ['/blog/awesome/article'],
+      }
+    }
+]
+```
+
+#### Include the root path, plus every path under the `/blog` route, but exclude all path under `/blog` that ends with `'react'`':
+
+```js
+plugins: [
+    {
+      resolve: 'gatsby-plugin-page-progress',
+      options: {
+        includePaths: ['/', { regex: '^/blog' }],
+        excludePaths: [{ regex: '^/blog.+react$' }],
+      }
+    }
+]
+```
+
+> Remember that exclusions always take precedence over inclusions. In the case above - If the plugin finds any path that begins with `/blog` and ends with `react` it will skip over the inclusions because it already knows to exclude the current route 😁
