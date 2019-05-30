@@ -66,7 +66,7 @@ plugins: [
 ]
 ```
 
-#### Include the root path, plus every path under the `/blog` route:
+#### Include the root path, plus all paths under the `/blog` route:
 
 ```js
 plugins: [
@@ -110,7 +110,7 @@ plugins: [
 ]
 ```
 
-#### Include the root path, plus every path under the `/blog` route, but exclude all path under `/blog` that ends with `'react'`':
+#### Include the root path, plus all paths under the `/blog` route, but exclude all paths under `/blog` that end with `'react'`':
 
 ```js
 plugins: [
@@ -124,4 +124,4 @@ plugins: [
 ]
 ```
 
-> Remember that exclusions always take precedence over inclusions. In the case above - If the plugin finds any path that begins with `/blog` and ends with `react` it will skip over the inclusions because it already knows to exclude the current route 😁
+> Remember that exclusions always take precedence over inclusions. In the case above - If the plugin finds any path that begins with `/blog` and ends with `react` it will skip over the inclusions because it already knows to exclude the that route 😁 Inversely, if we were on a route under `/blog` that didn't end with `react`, it would apply the progress indicator because the exclusion rule wouldn't be valid.
