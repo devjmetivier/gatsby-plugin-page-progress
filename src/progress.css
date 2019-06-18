@@ -1,0 +1,8 @@
+#gatsby-plugin-page-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: width 0.25s;
+    height: 3px;
+    background-color: #663399;
+}

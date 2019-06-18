@@ -1,9 +1,11 @@
+import './progress.css'
+
 const defaultOptions = {
   includePaths: [],
   excludePaths: [],
-  height: 3,
+  height: null,
   prependToBody: false,
-  color: `#663399`,
+  color: null,
 };
 
 // browser API usage: https://www.gatsbyjs.org/docs/browser-apis/#onRouteUpdate
@@ -28,6 +30,14 @@ export const onRouteUpdate = (
     // set defaults and grab progress indicator from the DOM
     let scrolling = false;
     const indicator = document.getElementById(`gatsby-plugin-page-progress`);
+
+    if (height != null) {
+      indicator.style.height = `${height}px`;
+    }
+
+    if (color != null) {
+      indicator.style.backgroundColor = color;
+    }
 
     // determine width of progress indicator
     const getIndicatorPercentageWidth = (currentPos, totalScroll) => {
@@ -60,13 +70,7 @@ export const onRouteUpdate = (
             currentPos,
             scrollDistance
           );
-
-          indicator.setAttribute(
-            `style`,
-            // eslint-disable-next-line
-            `width: ${indicatorWidth}%; position: fixed; height: ${height}px; background-color: ${color}; top: 0; left: 0; transition: width 0.25s;`
-          );
-
+          indicator.style.width = indicatorWidth + '%';
           scrolling = false;
         });
         scrolling = true;

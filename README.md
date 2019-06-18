@@ -51,6 +51,27 @@ plugins: ['gatsby-plugin-page-progress']
 | height        | `Number`                  | 3       | ❌        | Sets the height of the progress bar.                                                                                                                                                                                                                |
 | color         | `String`                  | #663399 | ❌        | Sets the color of the progress bar.                                                                                                                                                                                                                 |
 
+## Options in CSS
+
+It is possible to set _height_ and _color_ options via CSS:
+
+```css
+/* style.css */
+
+#gatsby-plugin-page-progress {
+    height: 3px;
+    background-color: #663399;
+}
+```
+
+```js
+/* gatsby-browser.js */
+
+import './style.css'
+```
+
+**Note** that any option set via the plugin options in `gatsby-config.js` will override thse CSS settings.
+
 ## Examples
 
 #### Only include the root path:
