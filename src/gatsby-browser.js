@@ -31,7 +31,7 @@ export const onRouteUpdate = (
 
     // determine width of progress indicator
     const getIndicatorPercentageWidth = (currentPos, totalScroll) => {
-      return currentPos / totalScroll * 100;
+      return (currentPos / totalScroll) * 100;
     };
 
     // find the total height of window
