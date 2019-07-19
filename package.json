@@ -28,7 +28,7 @@
     "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@babel/cli": "7.5.0",
+    "@babel/cli": "7.5.5",
     "@babel/core": "7.5.4",
     "babel-eslint": "^9.0.0",
     "babel-preset-gatsby-package": "0.2.2",
