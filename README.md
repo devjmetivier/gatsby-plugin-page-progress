@@ -12,10 +12,10 @@ The progress bar moves as you scroll down the page.
 
 > Useful for blog sites and other reading material so users know how far they've read into an article or page.
 
-## Install
+## [Install](#install)
 `npm i gatsby-plugin-page-progress`
 
-## Options
+## [Options Example](#options-example)
 
 Inside `gatsby-config.js`
 
@@ -41,17 +41,39 @@ you can simply add the name of the plugin to your plugins array in `gatsby-confi
 plugins: ['gatsby-plugin-page-progress']
 ```
 
-## Available Options
+## [Options](#options)
 
-| option        | accepts                   | default | required | description                                                                                                                                                                                                                                         |
-|---------------|---------------------------|---------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| includePaths  | `Array[String or Object]` | []      | ❌        | Supports multiple paths. This option enables the plugin to include an array of paths. You can use regex to include multiple paths to include. __See examples below__                                                                                |
-| excludePaths  | `Array[String or Object]`  | []      | ❌        | Supports multiple paths. This option enables the plugin to exclude an array of paths. You can use regex to include multiple paths to exclude. Defining paths to exclude will take precedence over `includePath` definitions. __See examples below__ |
-| prependToBody | `Boolean`                 | false   | ❌        | If `false`, the bar is appended to the end of the body. If `true`, the bar is prepended to the beginning of the body.                                                                                                                               |
-| height        | `Number`                  | 3       | ❌        | Sets the height of the progress bar.                                                                                                                                                                                                                |
-| color         | `String`                  | #663399 | ❌        | Sets the color of the progress bar.                                                                                                                                                                                                                 |
+#### `includePaths`
+Required: ❌
+Accepts: `array[string | object]`
+Default: `[]`
+> Supports multiple paths. This option enables the plugin to include an array of paths. You can use regex to include multiple paths to include. __See examples below__                                                                                
 
-## Examples
+#### `excludePaths`
+Required: ❌
+Accepts: `array[string | object]`
+Default: `[]`
+> Supports multiple paths. This option enables the plugin to exclude an array of paths. You can use regex to include multiple paths to exclude. Defining paths to exclude will take precedence over `includePath` definitions. __See examples below__ 
+
+#### `prependToBody`
+Required: ❌
+Accepts: `boolean`
+Default: `false`
+> If `false`, the bar is appended to the end of the body. If `true`, the bar is prepended to the beginning of the body.                                                                                                                               
+
+#### `height`
+Required: ❌
+Accepts: `number`
+Default: `3`
+> Sets the height of the progress bar.                                                                                                                                                                                                                
+
+#### `color`
+Required: ❌
+Accepts: `string`
+Default: `#663399`
+> Sets the color of the progress bar.                                                                                                                                                                                                                 
+
+## [Examples](#examples)
 
 #### Only include the root path:
 
@@ -125,4 +147,4 @@ plugins: [
 ]
 ```
 
-> Remember that exclusions always take precedence over inclusions. In the case above - If the plugin finds any path that begins with `/blog` and ends with `react` it will skip over the inclusions because it already knows to exclude the that route 😁 Inversely, if we were on a route under `/blog` that didn't end with `react`, it would apply the progress indicator because the exclusion rule wouldn't be valid.
+> Remember that exclusions always take precedence over inclusions. In the case above - If the plugin finds any path that begins with `/blog` and ends with `react` it will skip over the inclusions because it already knows to exclude that route 😁 Inversely, if we were on a route under `/blog` that didn't end with `react`, it would apply the progress indicator because the exclusion rule wouldn't be valid.
