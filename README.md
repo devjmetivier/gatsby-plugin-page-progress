@@ -45,32 +45,47 @@ plugins: ['gatsby-plugin-page-progress']
 
 #### `includePaths`
 Required: ❌
+
 Accepts: `array[string | object]`
+
 Default: `[]`
+
 > Supports multiple paths. This option enables the plugin to include an array of paths. You can use regex to include multiple paths to include. __See examples below__                                                                                
 
 #### `excludePaths`
 Required: ❌
+
 Accepts: `array[string | object]`
+
 Default: `[]`
+
 > Supports multiple paths. This option enables the plugin to exclude an array of paths. You can use regex to include multiple paths to exclude. Defining paths to exclude will take precedence over `includePath` definitions. __See examples below__ 
 
 #### `prependToBody`
 Required: ❌
+
 Accepts: `boolean`
+
 Default: `false`
+
 > If `false`, the bar is appended to the end of the body. If `true`, the bar is prepended to the beginning of the body.                                                                                                                               
 
 #### `height`
 Required: ❌
+
 Accepts: `number`
+
 Default: `3`
+
 > Sets the height of the progress bar.                                                                                                                                                                                                                
 
 #### `color`
 Required: ❌
+
 Accepts: `string`
+
 Default: `#663399`
+
 > Sets the color of the progress bar.                                                                                                                                                                                                                 
 
 ## [Examples](#examples)
