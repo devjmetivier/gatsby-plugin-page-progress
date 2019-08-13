@@ -46,7 +46,7 @@ plugins: ['gatsby-plugin-page-progress']
 #### `includePaths`
 Required: ❌
 
-Accepts: `array[string | object]`
+Accepts: `[string | object]`
 
 Default: `[]`
 
@@ -55,7 +55,7 @@ Default: `[]`
 #### `excludePaths`
 Required: ❌
 
-Accepts: `array[string | object]`
+Accepts: `[string | object]`
 
 Default: `[]`
 
