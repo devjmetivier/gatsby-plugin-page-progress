@@ -7,10 +7,7 @@ const defaultOptions = {
 };
 
 // browser API usage: https://www.gatsbyjs.org/docs/browser-apis/#onRouteUpdate
-export const onRouteUpdate = (
-  { location: { pathname } },
-  pluginOptions = {}
-) => {
+export const onRouteUpdate = ({ location: { pathname } }, pluginOptions = {}) => {
   // merge default options with user defined options in `gatsby-config.js`
   const options = { ...defaultOptions, ...pluginOptions };
 
@@ -43,7 +40,7 @@ export const onRouteUpdate = (
         document.body.offsetHeight,
         document.documentElement.offsetHeight,
         document.body.clientHeight,
-        document.documentElement.clientHeight
+        document.documentElement.clientHeight,
       );
     };
 
@@ -56,10 +53,7 @@ export const onRouteUpdate = (
 
       if (!scrolling) {
         window.requestAnimationFrame(() => {
-          const indicatorWidth = getIndicatorPercentageWidth(
-            currentPos,
-            scrollDistance
-          );
+          const indicatorWidth = getIndicatorPercentageWidth(currentPos, scrollDistance);
 
           indicator.setAttribute(
             `style`,
@@ -86,8 +80,7 @@ export const onRouteUpdate = (
       const isRegex = typeof x === `object`;
 
       // if regex is present test it against the pathname - if test passes, change returnVal
-      if (isRegex && new RegExp(x.regex, `gm`).test(pathname))
-        returnVal = !returnVal;
+      if (isRegex && new RegExp(x.regex, `gm`).test(pathname)) returnVal = !returnVal;
       // otherwise if the current path is strictly equal to the pathname, change returnVal
       if (x === pathname) returnVal = !returnVal;
     });
@@ -97,9 +90,7 @@ export const onRouteUpdate = (
 
   // check to see if the scroll indicator already exists - if it does, remove it
   function removeProgressIndicator() {
-    const indicatorCheck = document.getElementById(
-      `gatsby-plugin-page-progress`
-    );
+    const indicatorCheck = document.getElementById(`gatsby-plugin-page-progress`);
     if (indicatorCheck) indicatorCheck.remove();
   }
 
