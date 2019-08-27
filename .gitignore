@@ -2,5 +2,6 @@
 .DS_Store
 node_modules/
 haters/
-./gatsby-browser.js
 package-lock.json
+
+/gatsby-browser.js
