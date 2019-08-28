@@ -1,9 +1,6 @@
 name: Node.js Package
 
 on:
-  pull_request:
-    branches:
-      - master
   push:
     branches:
       - master
@@ -12,39 +9,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
         with:
-          node-version: 12
+          node-version: 12.x
       - run: |
           npm install
-          npm run build --if-present
+          npm run build
 
   publish-npm:
     name: Publish to NPM Registry
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
         with:
-          node-version: 12
+          node-version: 12.x
           registry-url: https://registry.npmjs.org/
-      - run: npm publish
+      - run: |
+          npm install
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-
-  publish-gpr:
-    name: Publish to Github Package Registry
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
-          scope: '@dmetivier'
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
