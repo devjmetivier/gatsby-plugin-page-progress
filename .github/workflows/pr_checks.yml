@@ -11,13 +11,14 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master branch
+      - name: Checkout current branch
         uses: actions/checkout@v1
-      - name: Set up node environment
+      - name: Setup node environment
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - run: |
+      - name: Install yarn && lint
+        run: |
           npm i -g yarn
           yarn
           yarn lint
@@ -27,13 +28,14 @@ jobs:
     needs: lint
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master branch
+      - name: Checkout current branch
         uses: actions/checkout@v1
-      - name: Set up node environment
+      - name: Setup node environment
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - run: |
+      - name: Install yarn && build
+        run: |
           npm i -g yarn
           yarn
           yarn build
