@@ -1,0 +1,57 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  lint:
+      name: Lint
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout master branch
+          uses: actions/checkout@v1
+        - name: Set up node environment
+          uses: actions/setup-node@v1
+          with:
+            node-version: 12.x
+        - run: |
+            npm i -g yarn
+            yarn
+            yarn lint
+
+  build:
+    name: Build
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v1
+      - name: Set up node environment
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - run: |
+          npm i -g yarn
+          yarn
+          yarn build
+
+  publish-npm:
+    name: Publish to NPM Registry
+    needs: [lint, build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v1
+      - name: Set up node environment
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+          registry-url: https://registry.npmjs.org/
+      - run: |
+          npm i -g yarn
+          yarn
+          yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
