@@ -1,0 +1,41 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches:
+      - master
+      - 'feature/*'
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v1
+      - name: Setup node environment
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install yarn && lint
+        run: |
+          npm i -g yarn
+          yarn
+          yarn lint
+
+  build:
+    name: Build
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v1
+      - name: Setup node environment
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install yarn && build
+        run: |
+          npm i -g yarn
+          yarn
+          yarn build
