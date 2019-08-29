@@ -17,7 +17,7 @@ jobs:
           with:
             node-version: 12.x
         - name: Install yarn && lint
-        - run: |
+          run: |
             npm i -g yarn
             yarn
             yarn lint
