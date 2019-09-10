@@ -32,7 +32,7 @@
     "@types/node": "^12.7.2",
     "@typescript-eslint/parser": "^2.0.0",
     "babel-eslint": "^10.0.3",
-    "babel-preset-gatsby-package": "0.2.3",
+    "babel-preset-gatsby-package": "0.2.4",
     "eslint": "^6.2.2",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-devjmetivier": "2.1.0",
