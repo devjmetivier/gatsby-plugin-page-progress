@@ -1,5 +1,22 @@
+# config folders
 .idea
 .vscode
 .DS_Store
+.github
+
+# modules
 node_modules/
 haters/
+
+# config files
+.babelrc
+.eslintrc
+.gitignore
+.prettierrc
+
+# lock files
+package-lock.json
+yarn.lock
+
+# logs
+yarn-error.log
