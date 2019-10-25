@@ -21,12 +21,11 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src --out-dir . && uglifyjs gatsby-browser.js -cm -o gatsby-browser.js",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "yarn build",
     "clean": "rm -rf node_modules",
     "watch": "babel -w src --out-dir .",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "prepublishOnly": "yarn build"
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
     "@babel/cli": "7.6.2",
