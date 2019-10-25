@@ -21,6 +21,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src --out-dir . && uglifyjs gatsby-browser.js -cm -o gatsby-browser.js",
+    "prepublishOnly": "npm run build",
     "clean": "rm -rf node_modules",
     "watch": "babel -w src --out-dir .",
     "lint": "eslint .",
