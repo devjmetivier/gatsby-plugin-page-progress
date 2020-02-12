@@ -1,7 +1,7 @@
 {
   "name": "gatsby-plugin-page-progress",
   "description": "Progress indicator for the top of pages as user scrolls",
-  "version": "2.0.14",
+  "version": "2.0.15",
   "author": "Devin Metivier <devinmetivier@gmail.com>",
   "license": "MIT",
   "repository": "git://github.com/dmetivier/gatsby-plugin-page-progress.git",
@@ -20,20 +20,25 @@
   ],
   "main": "index.js",
   "scripts": {
-    "build": "babel src --out-dir . && uglifyjs gatsby-browser.js -cm -o gatsby-browser.js",
+    "build": "babel src --out-dir .",
     "prepublishOnly": "yarn build",
     "clean": "rm -rf node_modules",
     "watch": "babel -w src --out-dir .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
+  "dependencies": {
+    "core-js": "^3.6.4"
+  },
   "devDependencies": {
-    "@babel/cli": "7.6.2",
-    "@babel/core": "7.6.2",
-    "@types/node": "^12.7.2",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/polyfill": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@types/node": "^13.7.1",
     "@typescript-eslint/parser": "^2.0.0",
     "babel-eslint": "^10.0.3",
-    "babel-preset-gatsby-package": "0.2.7",
+    "babel-preset-gatsby-package": "0.2.16",
     "eslint": "^6.2.2",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-devjmetivier": "2.1.0",
@@ -45,7 +50,7 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1",
     "prettier": "^1.18.2",
-    "typescript": "^3.5.3",
-    "uglify-js": "^3.5.15"
+    "typescript": "^3.7.5",
+    "uglify-js": "^3.7.7"
   }
 }
