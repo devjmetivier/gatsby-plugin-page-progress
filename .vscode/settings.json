@@ -1,0 +1,9 @@
+{
+  "eslint.enable": true,
+  "prettier.disableLanguages": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ]
+}

@@ -5,7 +5,6 @@
 .github
 
 # modules
-node_modules/
 haters/
 
 # config files
