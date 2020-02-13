@@ -1,7 +1,7 @@
 {
   "name": "gatsby-plugin-page-progress",
   "description": "Progress indicator for the top of pages as user scrolls",
-  "version": "2.0.15-beta.1",
+  "version": "2.0.16",
   "author": "Devin Metivier <devinmetivier@gmail.com>",
   "license": "MIT",
   "repository": "git://github.com/dmetivier/gatsby-plugin-page-progress.git",
@@ -27,18 +27,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
-  "peerDependencies": {
-    "core-js": "^3.6.4"
-  },
-  "dependencies": {
-    "core-js": "^3.6.4",
-    "regenerator-runtime": "^0.13.3"
-  },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
-    "@babel/runtime": "^7.8.4",
     "@types/node": "^13.7.1",
     "@typescript-eslint/parser": "^2.0.0",
     "babel-eslint": "^10.0.3",
@@ -54,7 +45,6 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1",
     "prettier": "^1.18.2",
-    "typescript": "^3.7.5",
-    "uglify-js": "^3.7.7"
+    "typescript": "^3.7.5"
   }
 }
