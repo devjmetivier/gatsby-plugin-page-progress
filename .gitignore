@@ -6,3 +6,4 @@ package-lock.json
 
 /gatsby-browser.js
 yarn-error.log
+yarn.lock
