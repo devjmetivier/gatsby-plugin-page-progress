@@ -74,6 +74,7 @@ const defaultOptions = {
   height: 3,
   prependToBody: false,
   color: `#663399`,
+  footerHeight: 0,
 };
 
 // browser API usage: https://www.gatsbyjs.org/docs/browser-apis/#onRouteUpdate
@@ -81,7 +82,7 @@ export const onRouteUpdate = ({ location: { pathname } }, pluginOptions = {}) =>
   // merge default options with user defined options in `gatsby-config.js`
   const options = { ...defaultOptions, ...pluginOptions };
 
-  const { includePaths, excludePaths, height, prependToBody, color } = options;
+  const { includePaths, excludePaths, height, prependToBody, color, footerHeight } = options;
 
   function pageProgress() {
     // create progress indicator container and append/prepend to document body
@@ -96,7 +97,7 @@ export const onRouteUpdate = ({ location: { pathname } }, pluginOptions = {}) =>
 
     // determine width of progress indicator
     const getIndicatorPercentageWidth = (currentPos, totalScroll) => {
-      return (currentPos / totalScroll) * 100;
+      return Math.min(1.0, (currentPos / totalScroll)) * 100;
     };
 
     // find the total height of window
@@ -117,7 +118,7 @@ export const onRouteUpdate = ({ location: { pathname } }, pluginOptions = {}) =>
       const currentPos = window.scrollY;
       const { innerHeight } = window;
       const scrollHeight = getScrollHeight();
-      const scrollDistance = scrollHeight - innerHeight;
+      const scrollDistance = scrollHeight - innerHeight - footerHeight;
 
       if (!scrolling) {
         window.requestAnimationFrame(() => {

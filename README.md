@@ -29,7 +29,8 @@ plugins: [
       excludePaths: ["/blog/beep-beep-lettuce"],
       height: 3,
       prependToBody: false,
-      color: `#663399`
+      color: `#663399`,
+      footerHeight: 500,
     }
   }
 ];
@@ -93,6 +94,16 @@ Accepts: `string`
 Default: `#663399`
 
 > Sets the `color` of the progress bar.
+
+#### `footerHeight`
+
+Required: ❌
+
+Accepts: `number`
+
+Default: `0`
+
+> Sets the height of the footer. The width of the progress bar will be scaled appropriately to reach 100% before reaching the page footer.
 
 ## [Examples](#examples)
 
