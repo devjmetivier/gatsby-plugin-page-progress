@@ -97,7 +97,7 @@ export const onRouteUpdate = ({ location: { pathname } }, pluginOptions = {}) =>
 
     // determine width of progress indicator
     const getIndicatorPercentageWidth = (currentPos, totalScroll) => {
-      return Math.min(1.0, (currentPos / totalScroll)) * 100;
+      return Math.min(1.0, currentPos / totalScroll) * 100;
     };
 
     // find the total height of window
