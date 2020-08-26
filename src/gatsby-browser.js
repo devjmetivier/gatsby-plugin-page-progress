@@ -1,6 +1,6 @@
 // Source: https://github.com/jserz/js_piece/blob/master/DOM/ParentNode/prepend()/prepend().md
-(function(arr) {
-  arr.forEach(function(item) {
+(function (arr) {
+  arr.forEach(function (item) {
     if (item.hasOwnProperty('prepend')) {
       return;
     }
@@ -12,7 +12,7 @@
         var argArr = Array.prototype.slice.call(arguments),
           docFrag = document.createDocumentFragment();
 
-        argArr.forEach(function(argItem) {
+        argArr.forEach(function (argItem) {
           var isNode = argItem instanceof Node;
           docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
         });
@@ -24,8 +24,8 @@
 })([Element.prototype, Document.prototype, DocumentFragment.prototype]);
 
 // Source: https://github.com/jserz/js_piece/blob/master/DOM/ParentNode/append()/append().md
-(function(arr) {
-  arr.forEach(function(item) {
+(function (arr) {
+  arr.forEach(function (item) {
     if (item.hasOwnProperty('append')) {
       return;
     }
@@ -37,7 +37,7 @@
         var argArr = Array.prototype.slice.call(arguments),
           docFrag = document.createDocumentFragment();
 
-        argArr.forEach(function(argItem) {
+        argArr.forEach(function (argItem) {
           var isNode = argItem instanceof Node;
           docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
         });
@@ -49,8 +49,8 @@
 })([Element.prototype, Document.prototype, DocumentFragment.prototype]);
 
 // from:https://github.com/jserz/js_piece/blob/master/DOM/ChildNode/remove()/remove().md
-(function(arr) {
-  arr.forEach(function(item) {
+(function (arr) {
+  arr.forEach(function (item) {
     if (item.hasOwnProperty('remove')) {
       return;
     }
@@ -142,7 +142,7 @@ export const onRouteUpdate = ({ location: { pathname } }, pluginOptions = {}) =>
     let returnVal = val;
 
     // loop over each path
-    paths.forEach(x => {
+    paths.forEach((x) => {
       // if returnVal has already changed => return
       if (returnVal === !val) return;
       // regex is supplied in an object: { regex: '/beep/beep/lettuce' }
