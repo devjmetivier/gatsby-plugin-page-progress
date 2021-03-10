@@ -75,6 +75,7 @@ const defaultOptions = {
   prependToBody: false,
   color: `#663399`,
   footerHeight: 0,
+  headerHeight: 0,
 };
 
 // browser API usage: https://www.gatsbyjs.org/docs/browser-apis/#onRouteUpdate
@@ -82,7 +83,7 @@ export const onRouteUpdate = ({ location: { pathname } }, pluginOptions = {}) =>
   // merge default options with user defined options in `gatsby-config.js`
   const options = { ...defaultOptions, ...pluginOptions };
 
-  const { includePaths, excludePaths, height, prependToBody, color, footerHeight } = options;
+  const { includePaths, excludePaths, height, prependToBody, color, footerHeight, headerHeight } = options;
 
   function pageProgress() {
     // create progress indicator container and append/prepend to document body
@@ -118,16 +119,17 @@ export const onRouteUpdate = ({ location: { pathname } }, pluginOptions = {}) =>
       const currentPos = window.scrollY;
       const { innerHeight } = window;
       const scrollHeight = getScrollHeight();
-      const scrollDistance = scrollHeight - innerHeight - footerHeight;
+      const scrollDistance = scrollHeight - innerHeight - footerHeight - headerHeight;
 
       if (!scrolling) {
         window.requestAnimationFrame(() => {
           const indicatorWidth = getIndicatorPercentageWidth(currentPos, scrollDistance);
+          const initialScrollPosition = headerHeight ? headerHeight : 0;
 
           indicator.setAttribute(
             `style`,
             // eslint-disable-next-line
-            `width: ${indicatorWidth}%; position: fixed; height: ${height}px; background-color: ${color}; top: 0; left: 0; transition: width 0.25s; z-index: 9999;`
+            `width: ${indicatorWidth}%; position: fixed; height: ${height}px; background-color: ${color}; top: ${initialScrollPosition}; left: 0; transition: width 0.25s; z-index: 9999;`
           );
 
           scrolling = false;
