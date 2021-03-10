@@ -31,6 +31,7 @@ plugins: [
       prependToBody: false,
       color: `#663399`,
       footerHeight: 500,
+      headerHeight: 0,
     }
   }
 ];
@@ -104,6 +105,16 @@ Accepts: `number`
 Default: `0`
 
 > Sets the height of the footer. The width of the progress bar will be scaled appropriately to reach 100% before reaching the page footer.
+
+#### `headerHeight`
+
+Required: ❌
+
+Accepts: `number`
+
+Default: `0`
+
+> Sets the height of the header. The width of the progress bar will be scaled appropriately to reach 100% while offsetting the height of a fixed header and moves the progress bar below the header.
 
 ## [Examples](#examples)
 
