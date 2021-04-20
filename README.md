@@ -32,8 +32,8 @@ plugins: [
       color: `#663399`,
       footerHeight: 500,
       headerHeight: 0,
-    }
-  }
+    },
+  },
 ];
 ```
 
@@ -126,9 +126,9 @@ plugins: [
     resolve: "gatsby-plugin-page-progress",
     options: {
       includePaths: ["/"],
-      excludePaths: []
-    }
-  }
+      excludePaths: [],
+    },
+  },
 ];
 ```
 
@@ -140,9 +140,9 @@ plugins: [
     resolve: "gatsby-plugin-page-progress",
     options: {
       includePaths: ["/", { regex: "^/blog" }],
-      excludePaths: []
-    }
-  }
+      excludePaths: [],
+    },
+  },
 ];
 ```
 
@@ -156,9 +156,9 @@ plugins: [
     resolve: "gatsby-plugin-page-progress",
     options: {
       includePaths: [],
-      excludePaths: ["/"]
-    }
-  }
+      excludePaths: ["/"],
+    },
+  },
 ];
 ```
 
@@ -170,9 +170,9 @@ plugins: [
     resolve: "gatsby-plugin-page-progress",
     options: {
       includePaths: ["/", { regex: "^/blog" }],
-      excludePaths: ["/blog/awesome/article"]
-    }
-  }
+      excludePaths: ["/blog/awesome/article"],
+    },
+  },
 ];
 ```
 
@@ -184,9 +184,9 @@ plugins: [
     resolve: "gatsby-plugin-page-progress",
     options: {
       includePaths: ["/", { regex: "^/blog" }],
-      excludePaths: [{ regex: "^/blog.+react$" }]
-    }
-  }
+      excludePaths: [{ regex: "^/blog.+react$" }],
+    },
+  },
 ];
 ```
 

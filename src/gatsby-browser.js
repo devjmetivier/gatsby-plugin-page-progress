@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 // Source: https://github.com/jserz/js_piece/blob/master/DOM/ParentNode/prepend()/prepend().md
 (function (arr) {
   arr.forEach(function (item) {
