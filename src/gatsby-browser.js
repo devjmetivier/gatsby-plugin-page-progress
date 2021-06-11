@@ -130,7 +130,7 @@ export const onRouteUpdate = ({ location: { pathname } }, pluginOptions = {}) =>
           indicator.setAttribute(
             `style`,
             // eslint-disable-next-line
-            `width: ${indicatorWidth}%; position: fixed; height: ${height}px; background-color: ${color}; top: ${initialScrollPosition}; left: 0; transition: width 0.25s; z-index: 9999;`
+            `width: ${indicatorWidth}%; position: fixed; height: ${height}px; background-color: ${color}; top: ${initialScrollPosition}px; left: 0; transition: width 0.25s; z-index: 9999;`
           );
 
           scrolling = false;
